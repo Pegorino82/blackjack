@@ -1,4 +1,7 @@
+require_relative 'score'
+
 class BasePlayer
+  include Score
   attr_accessor :bank
 
   def initialize(bank = 100)
