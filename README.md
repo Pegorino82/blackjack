@@ -14,9 +14,9 @@
   - score
   - pass
   - take
+  - open
 - Player < BasePlayer
   - name
-  - open
 - Dealer < BasePlayer
 - Game
   - all process
