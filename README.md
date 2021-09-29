@@ -1,0 +1,22 @@
+## classes:
+- Card
+  - data class
+- Deck
+  - contain cards
+  - shuffle
+  - get one card from top
+- Table
+  - actual game's state?
+  - show player's data?
+- BasePlayer
+  - bank
+  - cards
+  - score
+  - pass
+  - take
+- Player < BasePlayer
+  - name
+  - open
+- Dealer < BasePlayer
+- Game
+  - all process
