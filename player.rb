@@ -5,6 +5,6 @@ class Player < BasePlayer
 
   def initialize(name, bank = 100)
     super(bank)
-    @name = name
+    @name = name.capitalize
   end
 end

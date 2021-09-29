@@ -2,11 +2,15 @@ require_relative 'score'
 
 class BasePlayer
   include Score
-  attr_accessor :bank
+  attr_accessor :bank, :cards
 
   def initialize(bank = 100)
     @bank = bank
     @cards = []
+  end
+
+  def bet(bet)
+    @bank -= bet
   end
 
   def take(card)
@@ -14,11 +18,10 @@ class BasePlayer
   end
 
   def open
-    @cards
+    cards.map(&:render).join(' ')
   end
 
   def flush
     @cards = []
   end
 end
-
