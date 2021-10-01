@@ -1,27 +1,20 @@
 require_relative 'score'
+require_relative 'hand'
 
 class BasePlayer
-  include Score
-  attr_accessor :bank, :cards
+  attr_reader :name, :bank, :hand
 
-  def initialize(bank = 100)
+  def initialize(name, bank = 100)
+    @name = name
     @bank = bank
-    @cards = []
+    @hand = Hand.new
   end
 
   def bet(bet)
     @bank -= bet
   end
 
-  def take(card)
-    @cards.push(card) unless @cards.size == 3
-  end
-
-  def open
-    cards.map(&:render).join(' ')
-  end
-
-  def flush
-    @cards = []
+  def win(bank)
+    @bank += bank
   end
 end
