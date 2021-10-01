@@ -15,6 +15,10 @@ class Hand
     @cards.map(&:render).join(' ')
   end
 
+  def cards(hide)
+    hide ? @cards.map { |_| '*' }.join(' ') : open
+  end
+
   def flush!
     @cards = []
   end
