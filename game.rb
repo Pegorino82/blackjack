@@ -18,6 +18,7 @@ class Game
     { command: '1', title: 'play game' },
     { command: '0', title: 'exit' }
   ].freeze
+  BLACK_JACK = 21
   BET = 10
   INIT_CARDS_AMOUNT = 2
   GAME_ROUNDS = PLAYER_ACTIONS.size - 1
@@ -35,7 +36,7 @@ class Game
       break if action.zero?
 
       init
-      game(PLAYER_ACTIONS)
+      game
     end
   end
 
@@ -72,36 +73,37 @@ class Game
     puts text + '-' * 50
   end
 
-  def game(actions)
+  def game
     loop do
       break unless @player.can_play?
 
       break if game_played?
 
       table_game
-      show_actions(actions)
-      break if player_action.zero?
+      show_actions(PLAYER_ACTIONS)
+      action = player_action
+      break if action.zero?
 
-      dealer_action unless actions[action - 1][:action] == :open
+      dealer_action unless PLAYER_ACTIONS[action - 1][:action] == :open
       @round += 1
     end
   end
 
   def player_action
     action = gets.chomp.to_i
-    return action if action.zero?
 
-    send actions[action - 1][:action]
+    send PLAYER_ACTIONS[action - 1][:action]
+    action
   rescue NoMethodError
     wrong_choice
     retry
   end
 
   def winner
-    return @dealer if @player.hand.score > 21
-    return @player if @dealer.hand.score > 21
-    return @dealer if 21 - @dealer.hand.score < 21 - @player.hand.score
-    return @player if 21 - @dealer.hand.score > 21 - @player.hand.score
+    return @dealer if @player.hand.score > BLACK_JACK
+    return @player if @dealer.hand.score > BLACK_JACK
+    return @dealer if BLACK_JACK - @dealer.hand.score < BLACK_JACK - @player.hand.score
+    return @player if BLACK_JACK - @dealer.hand.score > BLACK_JACK - @player.hand.score
 
     nil if @dealer.hand.score == @player.hand.score
   end
