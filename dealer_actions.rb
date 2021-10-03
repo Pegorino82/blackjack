@@ -1,12 +1,12 @@
 module DealerActions
+  DEALER_ENOUGH_POINTS = 17
+
   def dealer_take
-    puts "dealer take #{@dealer.hand.score}" if @dealer.hand.score < 17
-    @dealer.hand.take(@deck.card) if @dealer.hand.score < 17
+    @dealer.hand.take(@deck.card) if @dealer.hand.score < DEALER_ENOUGH_POINTS
   end
 
   def dealer_pass?
-    puts "dealer pass #{@dealer.hand.score}" if @dealer.hand.score >= 17
-    @dealer.hand.score >= 17
+    @dealer.hand.score >= DEALER_ENOUGH_POINTS
   end
 
   def dealer_action
