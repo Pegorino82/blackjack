@@ -5,15 +5,23 @@
   - contain cards
   - shuffle
   - get one card from top
-- BasePlayer
-  - bank
+- Hand
   - cards
+  - flush cards
+  - take one
+  - show cards
   - score
-  - pass
-  - take
-  - open
-- Player < BasePlayer
+- Score
+  - count cards's values
+- Player
   - name
-- Dealer < BasePlayer
-- Game
-  - all process
+  - bank
+  - hand
+- Dealer < Player
+- PlayerActions
+  - take card
+  - open
+  - pass
+- DealerActions - auto choice
+- Table - game info
+- Game - all process
