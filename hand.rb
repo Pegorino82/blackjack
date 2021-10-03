@@ -22,4 +22,8 @@ class Hand
   def flush!
     @cards = []
   end
+
+  def full?
+    @cards.size == 3
+  end
 end
