@@ -1,8 +1,8 @@
-require_relative 'base_player'
+require_relative 'player'
 
-class Dealer < BasePlayer
-
-  def initialize
-    super('Dealer')
+class Dealer < Player
+  def initialize(name = 'Dealer')
+    super(name)
+    @name = 'Dealer'
   end
 end
