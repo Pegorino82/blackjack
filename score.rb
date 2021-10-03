@@ -8,11 +8,11 @@ module Score
       @cards |= []
       aces = @cards.select { |card| card.value == 'A' }
       others = @cards.select { |card| card.value.match(/[\dTJQK]/) }
-      sum = others.reduce(0) do |_, card|
-        + card.value.to_i || 10
+      sum = others.reduce(0) do |result, card|
+        result + card.value.to_i.zero? ? 10 : card.value.to_i
       end
-      aces.reduce(sum) do |_, _|
-        + sum + 11 > 21 ? 1 : 11
+      aces.reduce(sum) do |result, _|
+        result + sum + 11 > 21 ? 1 : 11
       end
     end
   end
